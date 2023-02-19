@@ -20,7 +20,23 @@
     </div>
 
     <script>
-        document.getElementById('timer').innerHTML = '00:00:01';
+        var start;
+
+        document.getElementById('start_stop').addEventListener('click', function() {
+            start = new Date();
+
+            setInterval(goTimer, 10);
+        });
+        
+        var goTimer = function() {
+            var now = new Date();
+
+            var milli = now.getTime() - start.getTime();
+            var seconds = milli / 1000;
+
+
+            document.getElementById('timer').innerHTML = seconds;
+        }
     </script>
 
 </body>
