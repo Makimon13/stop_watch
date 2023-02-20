@@ -27,15 +27,28 @@
 
             setInterval(goTimer, 10);
         });
+
+        var addZero = function(value) {
+            if (value < 10) {
+                value = '0' + value
+            }
+            return value
+        }
         
         var goTimer = function() {
             var now = new Date();
 
             var milli = now.getTime() - start.getTime();
-            var seconds = milli / 1000;
+            var seconds = Math.floor(milli / 1000);
+            var minutes = Math.floor(seconds / 60);
 
+            milli = milli - seconds * 1000;
+            seconds = seconds - minutes *60;
 
-            document.getElementById('timer').innerHTML = seconds;
+            seconds = addZero(seconds);
+            minutes = addZero(minutes);
+
+            document.getElementById('timer').innerHTML = minutes + ':' + seconds + ':' + milli;
         }
     </script>
 
