@@ -21,11 +21,25 @@
 
     <script>
         var start;
-
+        var timer_id;
         document.getElementById('start_stop').addEventListener('click', function() {
-            start = new Date();
+            if(this.innerHTML === 'START') {
 
-            setInterval(goTimer, 10);
+                start = new Date();
+                
+                timer_id = setInterval(goTimer, 10);
+                
+                this.innerHTML = 'STOP';
+                this.classList.remove('btn-primary');
+                this.classList.add('btn-danger');
+            } else {
+                clearInterval(timer_id);
+                this.innerHTML ='START';
+                this.classList.remove('btn-danger');
+                this.classList.add('btn-primary');
+            }
+
+            
         });
 
         var addZero = function(value) {
@@ -43,7 +57,7 @@
             var minutes = Math.floor(seconds / 60);
 
             milli = milli - seconds * 1000;
-            seconds = seconds - minutes *60;
+            seconds = seconds - minutes * 60;
 
             seconds = addZero(seconds);
             minutes = addZero(minutes);
