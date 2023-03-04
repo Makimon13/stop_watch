@@ -25,24 +25,29 @@
         document.getElementById('start_stop').addEventListener('click', function() {
             if(this.innerHTML === 'START') {
             //    get now datetime and store start variable
+              
                 start = new Date();
-                
                 // call goTimer function every 10 milli sec/ 
                 // then put into timer_id
-              timer_id = setInterval(goTimer,10);
-                
+          
+                timer_id = setInterval(goTimer,10);
             //   put stop text into this button
-              this.innerHTML = 'STOP';
+                this.innerHTML = 'STOP';
                 // make it red instead of blue remove btn-primary
-               this.classList.remove('btn-primary');
+                this.classList.remove('btn-primary');
 
                 // add class btn-danger
-              this.classList.add('btn-danger');
+                this.classList.add('btn-danger');
             } else {
-
+                // button is not sterted
+                //reset timer_id
                 clearInterval(timer_id);
-                this.innerHTML ='START';
+
+                // put start text to this button
+               this.innerHTML = 'START';
+                // remove red
                 this.classList.remove('btn-danger');
+                // then add blue
                 this.classList.add('btn-primary');
             }
 
@@ -59,7 +64,8 @@
         // var hide = new "hide"
         // hide.getTime();
 
-        console.log('hide is ', hide);
+        
+
         var goTimer = function() {
             var now = new Date();
 
